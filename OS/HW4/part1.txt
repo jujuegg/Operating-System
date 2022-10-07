@@ -1,0 +1,29 @@
+1.
+(a) Page 0 ,NRU優先取代 "not referenced" and "not modified"
+(b) Page 2 ,最先被load
+(c) Page 1 ,最不常用
+(d) Page 0 ,以FIFO為基礎，當R=0就取代；當R=1時，把R改成0，下次再找到就取代
+
+2.  
+       A   C   G   H   B   L   N   D
+Load  18  23   5   7  32  19   3   8  
+R      1   0   1   1   0   1   1   0
+M      1   1   1   0   0   0   1   1
+
+=> N G H D A L C B 
+R  1 1 1 0 1 1 0 0	Ans:Page D
+
+3.
+physical addresses是指在硬體中的實際記憶體位址。
+Virtual addresses 會讓程式以為有連續的記憶體空間可以用，但有些會先存放在disk裡，有需要用到的時候再交換到記憶體上。
+通常會比physical addresses的大小還大，透過MMU map到physical addresses。
+
+4.  
+NO
+他們的結果一樣，但實作方式不一樣 
+
+5.
+Page 0 : 0 1 1 0 1 1 1 0
+Page 1 : 0 1 0 0 1 0 0 1
+Page 2 : 0 0 1 1 0 1 1 1
+Page 3 : 1 0 0 0 1 0 1 1

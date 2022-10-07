@@ -1,0 +1,44 @@
+﻿1.
+Hard Link 一定要指向一個 inode，所以 Hard Link 一定會是有效的。
+而 Symbolic Link 則不一定有效，他有可能指向不存在的檔案。
+Hard Link 因為和 inode 綁在一起，所以不能夠跨越 partition，也不能跨越 file system。
+不過 Symbolic 是記錄路徑，所以可以誇越 partition，也可以跨越 file system。
+Hard Link 會共用一個 inode，而 Symbolic Link 有自己的 inode，有自己的 block (用來儲存路徑)。
+使用者自己沒有辦法使用 link() 系統呼叫建立指向目錄的 Hard Link，而 Symbolic Link 可以指向目錄.
+
+2.
+5 msec + (10 msec + 0.02 msec)  = 15.02 msec(access time per block)
+15.02 msec * 100 = 1.502 sec (100 blocks access time)
+
+(0.1 msec * 2) + (10 msec + 0.02 msec) = 10.22 msec (access time per block)
+10.22 msec * 100 = 1.022 sec (100 blocks access time)
+
+
+3. 
+LRU replacement 15 times
+Optimal replacement 11 times
+
+4.
+        Contiguous         Linked         Indexed
+ 
+a.           201              1               1 
+
+b.           101             52               1 
+
+c.             1              3               1 
+
+d.           198              1               0 
+
+e.            98             52               0 
+
+5.
+The virtual address in binary form is
+0001 0001 0001 0010 0011 0100 0101 0110
+	
+page size : 2^12 bytes => page table size is 2^32/2^12 = 2^20.
+the lower 12 bits (0100 0101 0110) are used as the displacement into the page.
+the remaining 20 bits (0001 0001 0001 0010 0011) are used as thedisplacement in the page table.
+The offset bits are then concatenated to physical page number to form the final address. 
+   
+
+
